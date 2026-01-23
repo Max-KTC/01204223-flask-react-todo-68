@@ -74,6 +74,8 @@ function App() {
     }
   }
 
+  const [newComments, setNewComments] = useState({});
+
   return (
     <>
       <h1>Todo List</h1>
@@ -93,6 +95,17 @@ function App() {
                 </ul>
               </>
             )}
+          <div className="new-comment-forms">
+              <input
+                type="text"
+                value={newComments[todo.id] || ""}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  setNewComments({ ...newComments, [todo.id]: value });
+                }}
+            />
+            <button onClick={() => {alert(newComments[todo.id])}}>Add Comment</button>
+            </div>
           </li>
         ))}
       </ul>
