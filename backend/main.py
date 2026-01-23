@@ -7,6 +7,7 @@ from flask_cors import CORS
 from flask_migrate import Migrate                        # import library
 from sqlalchemy import Integer, String, ForeignKey                            # เพิ่ม import Foreignkey
 from sqlalchemy.orm import Mapped, mapped_column, relationship   
+from models import TodoItem, Comment, db                             # import จาก models
 
 
 
