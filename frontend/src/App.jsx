@@ -26,6 +26,25 @@ function App() {
     }
   }
 
+    async function addNewComment(todoId) {
+    try {
+      const url = `${TODOLIST_API_URL}${todoId}/comments/`;
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 'message': newComments[todoId] || "" }),
+      });
+      if (response.ok) {
+        setNewComments({ ...newComments, [todoId]: "" });
+        await fetchTodoList();
+      }
+    } catch (error) {
+      console.error("Error adding new comment:", error);
+    }
+  }
+
   async function toggleDone(id) {
     const toggle_api_url = `${TODOLIST_API_URL}${id}/toggle/`
     try {
@@ -104,7 +123,7 @@ function App() {
                   setNewComments({ ...newComments, [todo.id]: value });
                 }}
             />
-            <button onClick={() => {alert(newComments[todo.id])}}>Add Comment</button>
+            <button onClick={() => {addNewComment(todo.id)}}>Add Comment</button>
             </div>
           </li>
         ))}
@@ -116,3 +135,4 @@ function App() {
 }
 
 export default App
+
