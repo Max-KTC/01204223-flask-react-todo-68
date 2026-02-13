@@ -1,9 +1,9 @@
 import './App.css'
 import { useState } from 'react'
 
-function TodoItem({todo}) {
+function TodoItem({todo, toggleDone, deleteTodo, addNewComment}) {
 
-  const [newComment, setNewComment] = useState("");      // เพิ่ม state newComment
+  const [newComment, setNewComment] = useState("");
   return (
     <li>
       <span className={todo.done ? "done" : ""}>{todo.title}</span>
@@ -22,17 +22,16 @@ function TodoItem({todo}) {
         <div className="new-comment-forms">
           <input
             type="text"
-            value={newComment}//value={newComments[todo.id] || ""}
+            value={newComment}
             onChange={(e) => {
              const value = e.target.value;
-            setNewComment(value);//setNewComments({ ...newComments, [todo.id]: value });
+            setNewComment(value);
             }}
           />
-          <button onClick={() => {                         // แก้ส่วนนี้
+          <button onClick={() => {                     
             addNewComment(todo.id, newComment);
             setNewComment("");
           }}>Add Comment</button>
-        //<button onCick={() => {addNewComment(todo.id)}}>Add Comment</button>
         </div>
       </li>
   )
