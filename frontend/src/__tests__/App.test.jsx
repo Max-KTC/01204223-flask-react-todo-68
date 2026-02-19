@@ -51,7 +51,6 @@ describe('App', () => {
     it('toggles done on a todo item', async () => {
         // เตรียมค่าสำหรับคืนหลังกด toggle done แล้ว
         const toggledTodoItem1 = { ...todoItem1, done: true };
-
         // mock fetch --- สังเกตว่าจะมีการเรียก fetch สองครั้ง จากการ init และจากการกดปุ่ม 
         //   สำหรับการเรียกแต่ละครั้งเราจะสามารถโปรแกรมคำตอบแยกกันได้ โดยเรียก mockImplementationOnce หลายครั้ง
         //   กล่าวคือ รอบแรกคืนรายการทั้งหมด  รอบที่สองคืนค่า todo item ที่แก้ค่าแล้ว
