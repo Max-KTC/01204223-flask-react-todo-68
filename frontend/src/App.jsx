@@ -3,10 +3,11 @@ import LoginForm from './LoginForm.jsx';
 import { AuthProvider } from './context/AuthContext.jsx';
 import TodoList from './TodoList.jsx'
 import './App.css'
+import PrivateRoute from "./PrivateRoute.jsx";
 
 function App() {
-  const TODOLIST_LOGIN_URL = 'http://localhost:5000/api/login/';
-  const TODOLIST_API_URL = 'http://localhost:5000/api/todos/';
+  const TODOLIST_LOGIN_URL = 'http://127.0.0.1:5000/api/login/';
+  const TODOLIST_API_URL = 'http://127.0.0.1:5000/api/todos/';
 
 
 
@@ -17,7 +18,9 @@ function App() {
           <Route
             path="/"
             element={
-              <TodoList apiUrl={TODOLIST_API_URL} />
+              <PrivateRoute>
+                <TodoList apiUrl={TODOLIST_API_URL} />
+              </PrivateRoute>
             }
           />
           <Route
@@ -27,19 +30,26 @@ function App() {
                 <h1>About</h1>
                 <p>This is a simple todo list application built with React and Flask.</p>
                 <a href="/">Back to Home</a>
+                <div>
+                  <a href="/login">Login</a>
+                </div>
               </>
             }
           />
           <Route
             path="/login"
             element={
-              <LoginForm loginUrl={TODOLIST_LOGIN_URL} />
+              <>
+                <LoginForm loginUrl={TODOLIST_LOGIN_URL} />
+                <div>
+                  <a href="/about">About</a>
+                </div>
+              </>
             }
+
           />
         </Routes>
-        <div>
-          <a href="/about">About</a> &nbsp;|&nbsp; <a href="/login">Login</a>
-        </div>
+
       </BrowserRouter>
     </AuthProvider>
   )
