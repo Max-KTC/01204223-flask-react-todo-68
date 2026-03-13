@@ -6,8 +6,8 @@ import './App.css'
 import PrivateRoute from "./PrivateRoute.jsx";
 
 function App() {
-  const TODOLIST_LOGIN_URL = 'http://127.0.0.1:5000/api/login/';
-  const TODOLIST_API_URL = 'http://127.0.0.1:5000/api/todos/';
+  const TODOLIST_API_URL = '/api/todos/';
+  const TODOLIST_LOGIN_URL = '/api/login/';
 
 
 
